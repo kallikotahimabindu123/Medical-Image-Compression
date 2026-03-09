@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Medical Image Compression</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+<main class="page">
+	<header class="header">
+		<span class="badge">AI Medical Imaging</span>
+		<h1 class="title">Medical Image Compression</h1>
+		<p class="subtitle">Upload a scan to compress, encrypt, and evaluate reconstruction quality with a cleaner visual report.</p>
+	</header>
+
+	<section class="card upload-card">
+		<form id="uploadForm" class="upload-form" method="POST" enctype="multipart/form-data">
+			<label for="file">Choose image file</label>
+			<input id="file" class="file-input" type="file" name="file" accept="image/*" required>
+			<p class="file-help">Supported formats: JPG, PNG, BMP, TIFF</p>
+			<div id="fileName" class="file-name"></div>
+			<button id="submitBtn" class="btn" type="submit">Process Image</button>
+			<div id="loadingNote" class="loading-note" hidden>Processing image... please wait.</div>
+		</form>
+	</section>
+</main>
+
+<script>
+const fileInput = document.getElementById("file");
+const fileName = document.getElementById("fileName");
+const form = document.getElementById("uploadForm");
+const submitBtn = document.getElementById("submitBtn");
+const loadingNote = document.getElementById("loadingNote");
+
+fileInput.addEventListener("change", () => {
+  fileName.textContent = fileInput.files.length ? `Selected: ${fileInput.files[0].name}` : "";
+});
+
+form.addEventListener("submit", () => {
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Processing...";
+  loadingNote.hidden = false;
+});
+</script>
+</body>
+</html>

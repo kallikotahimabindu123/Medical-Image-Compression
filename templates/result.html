@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Result</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+
+<body>
+<main class="page">
+	<header class="header">
+		<span class="badge">Analysis Complete</span>
+		<h1 class="title">Compression + Encryption Result</h1>
+		<p class="subtitle">Side-by-side preview with visual quality metrics and storage comparison.</p>
+	</header>
+
+	<section class="result-grid">
+		<article class="card image-card">
+			<h3>Original Image</h3>
+			<img src="/static/uploads/{{image}}" class="preview-img" alt="Original image">
+		</article>
+
+		<article class="card image-card">
+			<h3>Compressed Image</h3>
+			<img src="/static/results/{{compressed_image}}" class="preview-img" alt="Compressed image">
+		</article>
+	</section>
+
+	<section class="card section">
+		<h3>Evaluation Metrics</h3>
+		<div class="metrics">
+			<div class="metric">
+				<div class="metric-label">PSNR</div>
+				<div class="metric-value">{{"%.5f"|format(psnr)}} dB</div>
+			</div>
+			<div class="metric">
+				<div class="metric-label">SSIM</div>
+				<div class="metric-value">{{"%.6f"|format(ssim)}}</div>
+			</div>
+			<div class="metric">
+				<div class="metric-label">Entropy</div>
+				<div class="metric-value">{{"%.6f"|format(entropy)}}</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="card section">
+		<h3>Compression Details</h3>
+		<ul class="details-list">
+			<li><span>Original Size</span><strong>{{original_size}} bytes</strong></li>
+			<li><span>Compressed Size</span><strong>{{compressed_size}} bytes</strong></li>
+			<li><span>Compression Ratio</span><strong>{{"%.2f"|format(ratio)}}x</strong></li>
+		</ul>
+	</section>
+
+	<div class="back-row top-actions">
+		<a href="/" class="btn">Process Another Image</a>
+		<a href="/static/results/{{compressed_image}}" class="muted-link" download>Download Compressed Image</a>
+	</div>
+</main>
+</body>
+</html>
